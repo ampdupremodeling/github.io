@@ -196,6 +196,15 @@ input:focus,textarea:focus{outline:2px solid var(--accent)}
 }
 .footer-bottom{text-align:center;font-size:.9rem;}
   
+  /* Footer icon styling */
+.site-footer i {
+  color: var(--accent);
+  margin-right: 8px;
+  width: 18px;
+  text-align: center;
+}
+
+  
 /* SCROLL ANIMATION STYLES */
 .fade-in{
   opacity:0;
