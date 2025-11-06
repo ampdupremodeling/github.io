@@ -109,8 +109,8 @@ input:focus,textarea:focus{outline:2px solid var(--accent)}
   width:100%;
 }
 .brand img{
-  height:100px; /* bigger logo */
-  max-width:90%;
+  height:200px; /* bigger logo */
+  max-width:190%;
   margin:auto;
 }
 
