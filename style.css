@@ -74,6 +74,26 @@ input:focus,textarea:focus{outline:2px solid var(--accent)}
 .footer-logo{height:200px;margin-bottom:8px;filter:grayscale(.1) contrast(1.1)}
 .footer-bottom{padding:12px 0;border-top:1px solid #2d2d2d;font-size:.95rem;color:#cfcfcf}
 
+/* Remove bullets and extra padding from footer lists */
+.site-footer ul {
+  list-style: none;     /* removes the dots */
+  padding-left: 0;      /* removes left indent */
+  margin: 0;            /* keeps things tight */
+}
+
+.site-footer li {
+  margin-bottom: 6px;   /* even spacing between lines */
+}
+
+.site-footer a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
 @media (max-width: 880px){
 
   /* GENERAL LAYOUT */
