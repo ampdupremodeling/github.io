@@ -110,7 +110,7 @@ input:focus,textarea:focus{outline:2px solid var(--accent)}
 }
 .brand img{
   height:110px; /* bigger logo */
-  max-width:100%;
+  max-width:110%;
   margin:auto;
 }
 
