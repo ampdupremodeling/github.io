@@ -83,7 +83,17 @@ input:focus,textarea:focus{outline:2px solid var(--accent)}
   .container { width:92%; }
 
  /* HEADER & MENU */
-.brand img { height:70px; }
+.brand{
+  display:flex;
+  justify-content:center;
+  width:100%;
+}
+.brand img{
+  height:100px; /* bigger logo */
+  max-width:90%;
+  margin:auto;
+}
+
 
 .nav-toggle{
   font-size:2rem;
