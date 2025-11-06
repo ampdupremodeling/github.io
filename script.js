@@ -1,7 +1,21 @@
 // Mobile nav
-document.querySelector('.nav-toggle')?.addEventListener('click', ()=>{
-  document.querySelector('.nav')?.classList.toggle('open');
+const navBtn = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav');
+
+navBtn?.addEventListener('click', ()=>{
+  navMenu?.classList.toggle('open');
+  // toggle the icon between ☰ and ✖
+  navBtn.textContent = navMenu?.classList.contains('open') ? '✖' : '☰';
 });
+
+// close menu when a link is tapped
+document.querySelectorAll('.nav a').forEach(link=>{
+  link.addEventListener('click', ()=>{
+    navMenu.classList.remove('open');
+    navBtn.textContent = '☰';
+  });
+});
+
 
 // Active link highlight
 const path = location.pathname.split('/').pop() || 'index.html';
