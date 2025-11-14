@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Bundle Deals | Amp'd Up Remodeling</title>
-<meta name="description" content="Save money with bundled renovation packages from Amp'd Up Remodeling. Electrical upgrades, bathroom makeovers, rental refresh deals, and more." />
+<meta name="description" content="Save up to 15% with bundled renovation packages from Amp'd Up Remodeling. Electrical upgrades, bathroom makeovers, rental refresh deals, and more." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,48 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script defer src="script.js"></script>
+
+<style>
+/* --- PAGE-SPECIFIC CSS ADDITIONS (SAFE) --- */
+.bundle-hero {
+  background: linear-gradient(rgba(20,20,20,0.7), rgba(20,20,20,0.7)),
+              url('images/hero-remodel.jpg') center/cover no-repeat;
+  padding: 90px 0;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #111;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.8px;
+}
+
+.promo-banner {
+  background: #111;
+  border: 2px dashed var(--accent);
+  padding: 14px;
+  text-align: center;
+  font-weight: 700;
+  margin: 30px 0;
+  border-radius: 12px;
+  color: var(--accent);
+}
+
+.card i {
+  color: var(--accent);
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+</style>
+
 </head>
 
 <body>
@@ -38,12 +80,13 @@
 
 
 <!-- HERO -->
-<section class="hero fade-in">
+<section class="bundle-hero fade-in">
   <div class="container hero-inner">
+    <span class="badge">SAVE UP TO 15%</span>
     <h1>Renovation Bundle Deals</h1>
     <p class="subtitle">
-      There’s a deal for everything — so why not for your next home upgrade?
-      Save money with bundled remodeling packages designed to give you more value for less.
+      There’s a deal for everything — so why not your next renovation?  
+      Get more value, more upgrades, and more savings when you bundle.
     </p>
     <div class="hero-ctas">
       <a href="contact.html" class="btn btn-primary">Request a Bundle Quote</a>
@@ -52,21 +95,30 @@
 </section>
 
 
+<!-- PROMO BANNER -->
+<div class="container fade-in promo-banner">
+  🎉 Bundle & Save — Combine Remodeling + Electrical & Get Up to <strong>15% Off</strong> Your Project!
+</div>
+
+
 <!-- PAGE CONTENT -->
 <section class="page container fade-in">
+
   <h2 style="font-family:Montserrat; font-weight:800; margin-bottom:20px;">
     Choose Your Savings Bundle
   </h2>
 
   <div class="features" style="margin-bottom:30px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
-    <!-- ELECTRICAL UPGRADE -->
+
+    <!-- ELECTRICAL -->
     <article class="card fade-in">
-      <h3>⚡ Full Electrical Upgrade Package</h3>
-      <p>Modernize your home’s electrical system and meet Pennsylvania code.</p>
+      <i class="fa-solid fa-bolt"></i>
+      <h3>Full Electrical Upgrade Package</h3>
+      <p>Bring your home up to modern PA electrical code with one discounted package.</p>
       <ul class="checklist">
         <li>100A or 200A Panel Upgrade</li>
         <li>GFCI safety protection</li>
-        <li>New outlets & switches</li>
+        <li>Updated outlets & switches</li>
         <li>Smoke detector installation</li>
         <li>Optional dryer/range circuits</li>
       </ul>
@@ -74,25 +126,28 @@
       <a href="contact.html" class="btn btn-secondary">Get This Deal</a>
     </article>
 
-    <!-- BATHROOM MAKEOVER -->
+    <!-- BATHROOM -->
     <article class="card fade-in">
-      <h3>🚿 Bathroom Makeover Bundle</h3>
-      <p>A clean, modern bathroom refresh at a bundled discount.</p>
+      <i class="fa-solid fa-sink"></i>
+      <h3>Bathroom Makeover Bundle</h3>
+      <p>Clean, modern upgrades that refresh your bathroom without the full remodel cost.</p>
       <ul class="checklist">
         <li>New vanity & lighting</li>
         <li>Waterproof flooring</li>
         <li>Exhaust fan upgrade</li>
-        <li>Updated outlets & switches</li>
+        <li>New outlets & switches</li>
         <li>Optional tile shower upgrade</li>
       </ul>
       <p style="margin-top:14px;"><strong>Starting at $12,000</strong></p>
       <a href="contact.html" class="btn btn-secondary">Claim This Bundle</a>
     </article>
 
-    <!-- RENTAL REFRESH -->
-    <article class="card fade-in">
-      <h3>🏠 Rental Refresh Package</h3>
-      <p>Perfect for landlords, realtors, and Airbnb hosts.</p>
+    <!-- RENTAL (BEST VALUE) -->
+    <article class="card fade-in" style="position:relative;">
+      <div class="badge" style="position:absolute; top:12px; right:12px;">BEST VALUE</div>
+      <i class="fa-solid fa-house"></i>
+      <h3>Rental Refresh Package</h3>
+      <p>Perfect for landlords, investors, and Airbnb hosts — get rent-ready fast.</p>
       <ul class="checklist">
         <li>Patch & paint</li>
         <li>New flooring or refinishing</li>
@@ -111,9 +166,9 @@
   <div class="note-box fade-in" style="margin-top:40px;">
     <h3 style="font-family:Montserrat; margin-top:0;">Why Bundle Your Renovation?</h3>
     <p>
-      Bundling saves you money, reduces stress, and keeps everything on one schedule.
-      Instead of hiring multiple contractors, Amp’d Up Remodeling handles electrical, remodeling,
-      finishing, and cleanup — all with one trusted team.
+      Bundling saves money, reduces stress, and keeps everything on one schedule.
+      Instead of hiring multiple contractors, Amp’d Up Remodeling handles electrical,
+      remodeling, finishing, and cleanup with one trusted team.
     </p>
     <a href="contact.html" class="btn btn-primary" style="margin-top:10px;">Build Your Custom Bundle</a>
   </div>
