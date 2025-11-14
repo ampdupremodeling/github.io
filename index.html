@@ -4,55 +4,38 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Amp'd Up Remodeling | Lancaster & Berks County, PA</title>
-<meta name="description" content="Amp'd Up Remodeling is a licensed electrical and remodeling contractor based in Lancaster, PA. Bundle and save with our renovation package deals." />
+<meta name="description" content="Amp'd Up Remodeling is a licensed electrical and remodeling contractor serving Lancaster & Berks County, PA. Offering electrical, remodeling, and bundled renovation packages to save you money." />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome -->
+<!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <!-- Styles -->
 <link rel="stylesheet" href="style.css" />
 
-<!-- JS -->
+<!-- Scripts -->
 <script defer src="script.js"></script>
 
 <style>
-/* small safe additions */
-.bundle-hero {
-  background: #141414;
-  text-align: center;
-  padding: 70px 0;
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
+/* Small safe additions for package cards */
+.card i { 
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 8px;
 }
 .badge {
-  display: inline-block;
-  background: var(--accent);
-  color: #111;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-weight: 800;
-  margin-bottom: 14px;
-  letter-spacing: .8px;
-}
-.promo-banner {
-  background:#111;
-  border:2px dashed var(--accent);
-  padding:16px;
-  text-align:center;
-  border-radius:12px;
-  font-weight:700;
-  margin: 25px 0;
-  color:var(--accent);
-}
-.card i {
-  font-size:1.3rem;
-  color:var(--accent);
-  margin-bottom:8px;
+  display:inline-block;
+  background:var(--accent);
+  color:#111;
+  padding:6px 14px;
+  border-radius:8px;
+  font-weight:800;
+  margin-bottom:14px;
+  letter-spacing:.8px;
 }
 </style>
 </head>
@@ -66,21 +49,19 @@
       <img src="images/logo-green.png" alt="Amp'd Up Remodeling logo">
     </a>
     <button class="nav-toggle">☰</button>
-
     <nav class="nav">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
       <a href="reviews.html">Reviews</a>
+      <a href="packages.html">Packages</a>
       <a href="contact.html" class="cta">Get a Quote</a>
     </nav>
   </div>
 </header>
 
-<!-- ========================================================= -->
-<!-- ORIGINAL HERO (kept exactly as you have it now)           -->
-<!-- ========================================================= -->
+<!-- HERO -->
 <section class="hero fade-in">
   <div class="hero-inner container">
     <h1>Powering Transformations, One Home at a Time.</h1>
@@ -92,47 +73,52 @@
   </div>
 </section>
 
-<!-- ========================================================= -->
-<!-- NEW BUNDLE DEALS HERO — placed directly under original    -->
-<!-- ========================================================= -->
-<section class="bundle-hero fade-in">
-  <div class="container">
-    <span class="badge">SAVE UP TO 15%</span>
-    <h1>Renovation Bundle Deals</h1>
-    <p class="subtitle">
-      There’s a deal for everything — so why not your next renovation?
-      Bundle services together and save more with Amp’d Up Remodeling.
-    </p>
-
-    <div class="hero-ctas">
-      <a href="contact.html" class="btn btn-primary">Request a Bundle Quote</a>
-      <a href="#bundles" class="btn btn-secondary">View Packages</a>
-    </div>
+<!-- INTRO -->
+<section class="intro container fade-in">
+  <div class="intro-text">
+    <h2>Craftsmanship. Reliability. Modern Energy.</h2>
+    <p>Amp’d Up Remodeling proudly provides high-quality electrical and remodeling services across Lancaster & Berks County. Expert craftsmanship, honest pricing, and modern design energy is what sets us apart.</p>
   </div>
 </section>
 
-<div class="container fade-in promo-banner">
-  🎉 Bundle & Save — Combine Remodeling + Electrical Services & Get Up to <strong>15% Off</strong>!
-</div>
+<!-- 3 FEATURE CARDS -->
+<section class="features container fade-in">
+  <article class="card fade-in">
+    <h3>Electrical</h3>
+    <p>Panel upgrades, new circuits, lighting, EV chargers, troubleshooting & code corrections.</p>
+  </article>
+  <article class="card fade-in">
+    <h3>Remodeling</h3>
+    <p>Kitchens, bathrooms, basements, additions, custom carpentry & whole-home improvements.</p>
+  </article>
+  <article class="card fade-in">
+    <h3>Local & Responsive</h3>
+    <p>Based in Lancaster County — clear communication, fair pricing, and dependable service.</p>
+  </article>
+</section>
 
-<!-- ========================================================= -->
-<!-- BUNDLE PACKAGES SECTION                                   -->
-<!-- ========================================================= -->
+<!-- ⭐ NEW PACKAGE SECTION ADDED CLEANLY UNDER FEATURES -->
 <section id="bundles" class="page container fade-in">
 
-  <h2 style="font-family:Montserrat; font-weight:800; margin-bottom:20px;">Our Bundle Deals</h2>
+  <h2 style="font-family:Montserrat; font-weight:800; margin-bottom:20px;">
+    Renovation Bundle Deals
+  </h2>
+
+  <p class="subtitle" style="margin-bottom:30px; max-width:800px;">
+    Save money by bundling electrical + remodeling services into one affordable package.
+  </p>
 
   <div class="features" style="margin-bottom:30px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
 
     <article class="card fade-in">
       <i class="fa-solid fa-bolt"></i>
       <h3>Full Electrical Upgrade</h3>
-      <p>Modernize your home safely and efficiently.</p>
+      <p>Modern, safe, and code-correct electrical improvements.</p>
       <ul class="checklist">
         <li>100A or 200A Panel Upgrade</li>
         <li>GFCI protection</li>
         <li>New outlets & switches</li>
-        <li>Smoke detector installation</li>
+        <li>Smoke detectors installed</li>
       </ul>
       <p><strong>Starting at $4,200</strong></p>
       <a href="contact.html" class="btn btn-secondary">Get This Deal</a>
@@ -141,12 +127,12 @@
     <article class="card fade-in">
       <i class="fa-solid fa-sink"></i>
       <h3>Bathroom Makeover Bundle</h3>
-      <p>Fresh, modern upgrades at an affordable bundled price.</p>
+      <p>Modern bathroom upgrades at a bundled discount.</p>
       <ul class="checklist">
-        <li>Vanity & lighting</li>
+        <li>New vanity & lighting</li>
         <li>Waterproof flooring</li>
         <li>Exhaust fan upgrade</li>
-        <li>Switch/outlet updates</li>
+        <li>Updated outlets & switches</li>
       </ul>
       <p><strong>Starting at $12,000</strong></p>
       <a href="contact.html" class="btn btn-secondary">Claim This Bundle</a>
@@ -156,53 +142,19 @@
       <div class="badge" style="position:absolute; top:12px; right:12px;">BEST VALUE</div>
       <i class="fa-solid fa-house"></i>
       <h3>Rental Refresh Package</h3>
-      <p>Perfect for landlords, Airbnb hosts, and investors.</p>
+      <p>Perfect for landlords, realtors, and Airbnb hosts.</p>
       <ul class="checklist">
         <li>Patch & paint</li>
-        <li>New flooring or refinishing</li>
-        <li>Lighting upgrades</li>
-        <li>Safety updates</li>
+        <li>New or refinished flooring</li>
+        <li>Lighting improvements</li>
+        <li>Safety & outlet updates</li>
       </ul>
       <p><strong>Starting at $8,500</strong></p>
-      <a href="contact.html" class="btn btn-secondary">Book a Walkthrough</a>
+      <a href="contact.html" class="btn btn-secondary">Book Walkthrough</a>
     </article>
 
   </div>
 
-  <div class="note-box fade-in">
-    <h3>Why Bundle?</h3>
-    <p>Bundling your remodel saves money, time, and stress. One schedule. One contractor. One clean price.</p>
-    <a href="contact.html" class="btn btn-primary">Build Your Custom Bundle</a>
-  </div>
-
-</section>
-
-<!-- ========================================================= -->
-<!-- CONTINUE YOUR ORIGINAL HOMEPAGE BELOW                     -->
-<!-- ========================================================= -->
-
-<!-- INTRO SECTION -->
-<section class="intro container fade-in">
-  <div class="intro-text">
-    <h2>Craftsmanship. Reliability. Modern Energy.</h2>
-    <p>Amp’d Up Remodeling is a licensed electrical and remodeling contractor based in Lancaster, Pennsylvania. We proudly serve Lancaster County, Berks County, and surrounding areas — delivering expert craftsmanship, dependable service, and modern design energy to every project.</p>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="features container fade-in">
-  <article class="card fade-in">
-    <h3>Electrical</h3>
-    <p>Panel upgrades, lighting, EV chargers, circuits, troubleshooting & code fixes.</p>
-  </article>
-  <article class="card fade-in">
-    <h3>Remodeling</h3>
-    <p>Kitchens, bathrooms, basements, additions & more.</p>
-  </article>
-  <article class="card fade-in">
-    <h3>Local & Responsive</h3>
-    <p>Serving Lancaster & Berks County with honesty, quality, and speed.</p>
-  </article>
 </section>
 
 <!-- CTA BAND -->
@@ -218,7 +170,7 @@
 <footer class="site-footer fade-in">
   <div class="container footer-grid">
     <div>
-      <img class="footer-logo" src="images/logo-yellow.png" alt="Amp'd Up Remodeling Logo">
+      <img class="footer-logo" src="images/logo-yellow.png" alt="Amp'd Up Remodeling logo">
       <p>Licensed Electrical & Remodeling Contractor</p>
       <p>Lancaster & Berks County, PA</p>
     </div>
@@ -227,7 +179,7 @@
       <h4>Contact</h4>
       <ul>
         <li><i class="fa-solid fa-envelope"></i> <a href="mailto:ampdupremodeling@gmail.com">ampdupremodeling@gmail.com</a></li>
-        <li><i class="fa-solid fa-phone"></i> <a href="tel:+17176178378">(717) 617-8378</a></li>
+        <li><i class="fa-solid fa-phone"></i> <a href="tel:+17176178378">(717)-617-8378</a></li>
       </ul>
     </div>
 
@@ -235,8 +187,8 @@
       <h4>Quick Links</h4>
       <ul>
         <li><i class="fa-solid fa-bolt"></i> <a href="services.html">Services</a></li>
-        <li><i class="fa-solid fa-image"></i> <a href="gallery.html">Projects</a></li>
-        <li><i class="fa-solid fa-tags"></i> <a href="packages.html">Bundle Deals</a></li>
+        <li><i class="fa-solid fa-image"></i> <a href="gallery.html">Gallery</a></li>
+        <li><i class="fa-solid fa-tags"></i> <a href="packages.html">Package Deals</a></li>
         <li><i class="fa-solid fa-file-pen"></i> <a href="contact.html">Request a Quote</a></li>
       </ul>
     </div>
