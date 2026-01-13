@@ -1,99 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Amp'd Up Remodeling | Lancaster & Berks County, PA</title>
-<meta name="description" content="Amp'd Up Remodeling is a licensed electrical and remodeling contractor based in Lancaster, PA, serving Lancaster County, Berks County, and surrounding areas." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amp'd Up Remodeling | Lancaster & Berks County, PA</title>
+  <meta name="description" content="Amp'd Up Remodeling is a licensed electrical and remodeling contractor based in Lancaster, PA, serving Lancaster County, Berks County, and surrounding areas." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style>
-/* ===== Carousel ===== */
-.gallery-carousel {
-  position: relative;
-  max-width: 100%;
-  margin: 20px auto;
-  overflow: hidden;
-  border-radius: 10px;
-}
-.gallery-carousel img {
-  width: 100%;
-  display: none;
-  border-radius: 10px;
-}
-.gallery-carousel img.active { display: block; }
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
-  color: white;
-  border: none;
-  font-size: 2rem;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.carousel-btn.left { left: 10px; }
-.carousel-btn.right { right: 10px; }
-.carousel-caption {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-weight: 600;
-  text-shadow: 1px 1px 4px #000;
-  background: rgba(0,0,0,0.2);
-  padding: 5px 0;
-  border-radius: 0 0 10px 10px;
-}
+  <style>
+    /* ===== Carousel ===== */
+    .gallery-carousel {
+      position: relative;
+      max-width: 100%;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #000;
+      text-align: center;
+    }
+    .gallery-carousel img {
+      width: 100%;
+      display: none;
+      border-radius: 10px;
+      max-height: 480px;
+      object-fit: cover;
+    }
+    .gallery-carousel img.active { display: block; }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      padding: 6px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .carousel-btn.left { left: 10px; }
+    .carousel-btn.right { right: 10px; }
+    .carousel-caption {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-weight: 600;
+      text-shadow: 1px 1px 4px #000;
+      background: rgba(0,0,0,0.2);
+      padding: 6px 0;
+      border-radius: 0 0 10px 10px;
+      box-sizing: border-box;
+    }
 
-// --- Gallery Grid (SAFE VERSION) ---
-images.forEach(img => {
-  const fig = document.createElement("figure");
-  fig.className = "gallery-item";
+    /* ===== Gallery Grid ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .gallery-item {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+    }
+    .gallery-item figcaption {
+      padding: 8px 10px;
+      font-size: 0.95rem;
+      color: #333;
+    }
 
-  const image = document.createElement("img");
-  image.src = `images/${img.file}`;
-  image.alt = img.caption;
-  image.addEventListener("click", () => {
-    openLightbox(image.src, img.caption);
-  });
+    /* ===== Lightbox ===== */
+    #lightbox {
+      position: fixed;
+      display: none;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    #lightbox .lb-inner {
+      max-width: 100%;
+      max-height: 100%;
+      text-align: center;
+      color: #fff;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+    }
+    #lightbox #lightbox-caption {
+      margin-top: 10px;
+      font-weight: 600;
+    }
 
-  const caption = document.createElement("figcaption");
-  caption.textContent = img.caption;
-
-  fig.appendChild(image);
-  fig.appendChild(caption);
-  gallery.appendChild(fig);
-});
-
-/* ===== Lightbox ===== */
-#lightbox {
-  position: fixed;
-  display: none;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 8px;
-}
-#lightbox:active { display:none; }
-</style>
+    /* small utility */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; }
+    h1 { margin-top: 20px; font-family: 'Montserrat', sans-serif; }
+  </style>
 </head>
 
 <body>
@@ -121,8 +150,8 @@ images.forEach(img => {
 
   <!-- ===== Carousel ===== -->
   <div class="gallery-carousel" id="carousel">
-    <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
-    <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
+    <button class="carousel-btn left" id="carousel-prev" aria-label="Previous slide">&#10094;</button>
+    <button class="carousel-btn right" id="carousel-next" aria-label="Next slide">&#10095;</button>
     <div class="carousel-caption" id="carousel-caption"></div>
   </div>
 
@@ -130,9 +159,11 @@ images.forEach(img => {
   <div class="gallery-grid" id="gallery"></div>
 
   <!-- ===== Lightbox ===== -->
-  <div id="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img">
-    <div id="lightbox-caption" style="color:white;text-align:center;margin-top:10px;"></div>
+  <div id="lightbox" aria-hidden="true">
+    <div class="lb-inner" role="dialog" aria-label="Image preview">
+      <img id="lightbox-img" alt="">
+      <div id="lightbox-caption"></div>
+    </div>
   </div>
 </main>
 
@@ -165,74 +196,158 @@ images.forEach(img => {
 </footer>
 
 <script>
-/* ===== Load Images from JSON ===== */
-let carouselImages = [];
-let current = 0;
+  (async function loadGallery() {
+    // get page elements
+    const carouselEl = document.getElementById('carousel');
+    const carouselCaption = document.getElementById('carousel-caption');
+    const galleryEl = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
 
-fetch("images/images.json")
-  .then(res => res.json())
-  .then(images => {
-    carouselImages = images;
-    const carousel = document.getElementById("carousel");
-    const gallery = document.getElementById("gallery");
+    let carouselImages = [];
+    let current = 0;
+    let autoSlideTimer = null;
 
-    // --- Carousel: first 4 images auto-updated ---
-    const featured = images.slice(0, Math.min(4, images.length));
-    featured.forEach((img,i) => {
-      const el = document.createElement("img");
-      el.src = `images/${img.file}`;
-      if(i===0) el.classList.add("active");
-      el.onclick = () => openLightbox(el.src, img.caption); // click opens lightbox
-      carousel.appendChild(el);
-    });
-    updateCaption();
+    function debugLog(...args) {
+      if (window.console && console.log) console.log(...args);
+    }
 
-    // --- Gallery Grid ---
-    images.forEach(img => {
-      const fig = document.createElement("figure");
-      fig.classList.add("gallery-item");
-      fig.innerHTML = `<img src="images/${img.file}" onclick="openLightbox(this.src,'${img.caption}')">
-                       <figcaption>${img.caption}</figcaption>`;
-      gallery.appendChild(fig);
-    });
-  });
+    try {
+      const res = await fetch('images/images.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to fetch images/images.json: ' + res.status + ' ' + res.statusText);
+      const images = await res.json();
+      if (!Array.isArray(images) || images.length === 0) {
+        galleryEl.innerHTML = '<p style="color:#900">No images available.</p>';
+        return;
+      }
 
-/* ===== Carousel Controls ===== */
-function showSlide(n){
-  const slides = document.querySelectorAll("#carousel img");
-  slides.forEach(s => s.classList.remove("active"));
-  if(n >= slides.length) current = 0;
-  if(n < 0) current = slides.length - 1;
-  slides[current].classList.add("active");
-  updateCaption();
-}
+      carouselImages = images;
 
-function nextSlide(){ current++; showSlide(current); }
-function prevSlide(){ current--; showSlide(current); }
+      // Build carousel (first up to 4 images)
+      const featured = images.slice(0, Math.min(4, images.length));
+      featured.forEach((img, i) => {
+        const el = document.createElement('img');
+        el.src = `images/${img.file}`;
+        el.alt = img.caption || '';
+        if (i === 0) el.classList.add('active');
+        el.addEventListener('click', () => openLightbox(el.src, img.caption));
+        el.addEventListener('error', () => {
+          debugLog('Carousel image failed to load:', el.src);
+          el.style.display = 'none';
+        });
+        // insert before the buttons' end to keep controls visible (append is fine too)
+        carouselEl.appendChild(el);
+      });
 
-// --- Update carousel caption ---
-function updateCaption(){
-  const slides = document.querySelectorAll("#carousel img");
-  const captionDiv = document.getElementById("carousel-caption");
-  if(slides.length > 0 && carouselImages.length > 0){
-    captionDiv.textContent = carouselImages[current]?.caption || "";
-  }
-}
+      // Build gallery grid
+      images.forEach(img => {
+        const fig = document.createElement('figure');
+        fig.className = 'gallery-item';
 
-setInterval(nextSlide, 5000); // auto slide
+        const image = document.createElement('img');
+        image.src = `images/${img.file}`;
+        image.alt = img.caption || '';
+        image.addEventListener('click', () => openLightbox(image.src, img.caption));
+        image.addEventListener('error', () => {
+          debugLog('Gallery image failed to load:', image.src);
+          image.style.display = 'none';
+        });
 
-/* ===== Lightbox ===== */
-function openLightbox(src, caption){
-  const lb = document.getElementById("lightbox");
-  const lbImg = document.getElementById("lightbox-img");
-  const lbCaption = document.getElementById("lightbox-caption");
-  lbImg.src = src;
-  lbCaption.textContent = caption;
-  lb.style.display = "flex";
-}
+        const caption = document.createElement('figcaption');
+        caption.textContent = img.caption || '';
 
-/* ===== Copyright year ===== */
-document.getElementById("year").textContent = new Date().getFullYear();
+        fig.appendChild(image);
+        fig.appendChild(caption);
+        galleryEl.appendChild(fig);
+      });
+
+      // Carousel controls
+      function updateCaption() {
+        const slides = document.querySelectorAll('#carousel img');
+        if (slides.length > 0 && carouselImages.length > 0) {
+          // map slide index to carouselImages index safely (featured subset)
+          const featured = carouselImages.slice(0, Math.min(4, carouselImages.length));
+          captionIndex = Math.min(current, featured.length - 1);
+          carouselCaption.textContent = featured[captionIndex]?.caption || '';
+        } else {
+          carouselCaption.textContent = '';
+        }
+      }
+
+      function showSlide(n) {
+        const slides = document.querySelectorAll('#carousel img');
+        if (!slides || slides.length === 0) return;
+        if (n >= slides.length) current = 0;
+        else if (n < 0) current = slides.length - 1;
+        else current = n;
+        slides.forEach(s => s.classList.remove('active'));
+        const slide = slides[current];
+        if (slide) slide.classList.add('active');
+        updateCaption();
+      }
+
+      prevBtn.addEventListener('click', () => {
+        showSlide(current - 1);
+        restartAutoSlide();
+      });
+      nextBtn.addEventListener('click', () => {
+        showSlide(current + 1);
+        restartAutoSlide();
+      });
+
+      function startAutoSlide() {
+        if (autoSlideTimer) clearInterval(autoSlideTimer);
+        autoSlideTimer = setInterval(() => {
+          showSlide(current + 1);
+        }, 5000);
+      }
+      function restartAutoSlide() {
+        startAutoSlide();
+      }
+
+      // Lightbox
+      function openLightbox(src, caption) {
+        lightboxImg.src = src;
+        lightboxImg.alt = caption || '';
+        lightboxCaption.textContent = caption || '';
+        lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+      function closeLightbox() {
+        lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.src = '';
+      }
+
+      // Expose openLightbox for any other scripts (optional)
+      window.openLightbox = openLightbox;
+
+      // lightbox close behavior: click outside image closes
+      lightbox.addEventListener('click', (ev) => {
+        // if click is on the backdrop or caption area, close
+        if (ev.target === lightbox || ev.target === lightboxCaption) closeLightbox();
+      });
+      // pressing ESC closes
+      document.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape') closeLightbox();
+      });
+
+      // initialize
+      updateCaption();
+      startAutoSlide();
+
+    } catch (err) {
+      console.error(err);
+      galleryEl.innerHTML = '<p style="color:#900">Failed to load gallery. Check console/network for details.</p>';
+    }
+
+    // copyright year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  })();
 </script>
 
 </body>
