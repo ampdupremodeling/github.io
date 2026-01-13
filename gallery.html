@@ -6,16 +6,6 @@
 <title>Amp'd Up Remodeling | Lancaster & Berks County, PA</title>
 <meta name="description" content="Amp'd Up Remodeling is a licensed electrical and remodeling contractor based in Lancaster, PA, serving Lancaster County, Berks County, and surrounding areas." />
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7FDZQTRZ15"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7FDZQTRZ15');
-</script>
-
-<!-- Fonts and Styles -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -23,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* ---------------------- CAROUSEL ---------------------- */
+/* ===== Carousel ===== */
 .gallery-carousel {
   position: relative;
   max-width: 100%;
@@ -35,7 +25,6 @@
   width: 100%;
   display: none;
   border-radius: 10px;
-  transition: opacity 0.5s ease-in-out;
 }
 .gallery-carousel img.active { display: block; }
 .carousel-btn {
@@ -52,8 +41,21 @@
 }
 .carousel-btn.left { left: 10px; }
 .carousel-btn.right { right: 10px; }
+.carousel-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 1px 1px 4px #000;
+  background: rgba(0,0,0,0.2);
+  padding: 5px 0;
+  border-radius: 0 0 10px 10px;
+}
 
-/* ---------------------- GALLERY GRID ---------------------- */
+/* ===== Gallery Grid ===== */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
@@ -64,12 +66,9 @@
   width: 100%;
   border-radius: 8px;
   cursor: pointer;
-  object-fit: cover;
-  transition: transform 0.3s;
 }
-.gallery-item img:hover { transform: scale(1.05); }
 
-/* ---------------------- LIGHTBOX ---------------------- */
+/* ===== Lightbox ===== */
 #lightbox {
   position: fixed;
   display: none;
@@ -92,7 +91,6 @@
 
 <body>
 
-<!-- ---------------------- HEADER ---------------------- -->
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="brand">
@@ -114,22 +112,23 @@
 <main class="container page fade-in">
   <h1>Gallery & Recent Projects</h1>
 
-  <!-- ---------------------- CAROUSEL ---------------------- -->
+  <!-- ===== Carousel ===== -->
   <div class="gallery-carousel" id="carousel">
     <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
     <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
+    <div class="carousel-caption" id="carousel-caption"></div>
   </div>
 
-  <!-- ---------------------- GALLERY GRID ---------------------- -->
+  <!-- ===== Gallery Grid ===== -->
   <div class="gallery-grid" id="gallery"></div>
 
-  <!-- ---------------------- LIGHTBOX ---------------------- -->
+  <!-- ===== Lightbox ===== -->
   <div id="lightbox" onclick="this.style.display='none'">
     <img id="lightbox-img">
+    <div id="lightbox-caption" style="color:white;text-align:center;margin-top:10px;"></div>
   </div>
 </main>
 
-<!-- ---------------------- FOOTER ---------------------- -->
 <footer class="site-footer fade-in">
   <div class="container footer-grid">
     <div>
@@ -158,59 +157,74 @@
   </div>
 </footer>
 
-<!-- ---------------------- SCRIPTS ---------------------- -->
 <script>
-/* ---------------------- LOAD IMAGES FROM JSON ---------------------- */
+/* ===== Load Images from JSON ===== */
+let carouselImages = [];
+let current = 0;
+
 fetch("images/images.json")
   .then(res => res.json())
   .then(images => {
+    carouselImages = images;
     const carousel = document.getElementById("carousel");
     const gallery = document.getElementById("gallery");
 
-    // --------- CAROUSEL (first 4 images) ---------
-    const featured = images.slice(0,4);
+    // --- Carousel: first 4 images auto-updated ---
+    const featured = images.slice(0, Math.min(4, images.length));
     featured.forEach((img,i) => {
       const el = document.createElement("img");
       el.src = `images/${img.file}`;
-      el.loading = "lazy"; // lazy load for performance
       if(i===0) el.classList.add("active");
+      el.onclick = () => openLightbox(el.src, img.caption); // click opens lightbox
       carousel.appendChild(el);
     });
+    updateCaption();
 
-    // --------- FULL GALLERY GRID ---------
+    // --- Gallery Grid ---
     images.forEach(img => {
       const fig = document.createElement("figure");
       fig.classList.add("gallery-item");
-      fig.innerHTML = `
-        <img src="images/${img.file}" alt="${img.caption}" loading="lazy" onclick="openLightbox(this.src)">
-        <figcaption>${img.caption}</figcaption>
-      `;
+      fig.innerHTML = `<img src="images/${img.file}" onclick="openLightbox(this.src,'${img.caption}')">
+                       <figcaption>${img.caption}</figcaption>`;
       gallery.appendChild(fig);
     });
   });
 
-/* ---------------------- CAROUSEL CONTROLS ---------------------- */
-let current = 0;
+/* ===== Carousel Controls ===== */
 function showSlide(n){
   const slides = document.querySelectorAll("#carousel img");
   slides.forEach(s => s.classList.remove("active"));
-  if(n>=slides.length) current=0;
-  if(n<0) current=slides.length-1;
+  if(n >= slides.length) current = 0;
+  if(n < 0) current = slides.length - 1;
   slides[current].classList.add("active");
+  updateCaption();
 }
+
 function nextSlide(){ current++; showSlide(current); }
 function prevSlide(){ current--; showSlide(current); }
-setInterval(nextSlide, 5000); // auto slide every 5 seconds
 
-/* ---------------------- LIGHTBOX ---------------------- */
-function openLightbox(src){
+// --- Update carousel caption ---
+function updateCaption(){
+  const slides = document.querySelectorAll("#carousel img");
+  const captionDiv = document.getElementById("carousel-caption");
+  if(slides.length > 0 && carouselImages.length > 0){
+    captionDiv.textContent = carouselImages[current]?.caption || "";
+  }
+}
+
+setInterval(nextSlide, 5000); // auto slide
+
+/* ===== Lightbox ===== */
+function openLightbox(src, caption){
   const lb = document.getElementById("lightbox");
   const lbImg = document.getElementById("lightbox-img");
+  const lbCaption = document.getElementById("lightbox-caption");
   lbImg.src = src;
+  lbCaption.textContent = caption;
   lb.style.display = "flex";
 }
 
-/* ---------------------- COPYRIGHT YEAR ---------------------- */
+/* ===== Copyright year ===== */
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
