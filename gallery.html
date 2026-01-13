@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Amp'd Up Remodeling | Gallery</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amp'd Up Remodeling | Lancaster & Berks County, PA</title>
+<meta name="description" content="Amp'd Up Remodeling is a licensed electrical and remodeling contractor based in Lancaster, PA, serving Lancaster County, Berks County, and surrounding areas." />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7FDZQTRZ15"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7FDZQTRZ15');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 /* --- Carousel styles --- */
 .gallery-carousel {
@@ -70,26 +85,73 @@
 }
 #lightbox:active { display:none; }
 </style>
+
 </head>
 <body>
 
-<header>
-  <h1>Gallery & Recent Projects</h1>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand">
+      <img src="images/logo-green.png" alt="Amp'd Up Remodeling logo">
+    </a>
+    <button class="nav-toggle" aria-label="Open navigation">☰</button>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="packages.html">Packages</a>
+      <a href="contact.html" class="cta">Get a Quote</a>
+    </nav>
+  </div>
 </header>
 
-<!-- Featured Carousel -->
-<div class="gallery-carousel" id="carousel">
-  <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
-  <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
-</div>
+<main class="container page fade-in">
+  <h1>Gallery & Recent Projects</h1>
 
-<!-- Full gallery -->
-<div class="gallery-grid" id="gallery"></div>
+  <!-- Featured Carousel -->
+  <div class="gallery-carousel" id="carousel">
+    <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
+    <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
+  </div>
 
-<!-- Lightbox -->
-<div id="lightbox" onclick="this.style.display='none'">
-  <img id="lightbox-img">
-</div>
+  <!-- Full gallery grid -->
+  <div class="gallery-grid" id="gallery"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img">
+  </div>
+</main>
+
+<footer class="site-footer fade-in">
+  <div class="container footer-grid">
+    <div>
+      <img class="footer-logo" src="images/logo-yellow.png" alt="Amp'd Up Remodeling logo">
+      <p>Licensed Electrical & Remodeling Contractor</p>
+      <p>Lancaster &amp; Berks County, PA</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:justin@ampdupremodeling.com">justin@ampdupremodeling.com</a></li>
+        <li><i class="fa-solid fa-phone"></i> <a href="tel:+17176178378">(717) 617-8378</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><i class="fa-solid fa-bolt"></i> <a href="services.html">Services</a></li>
+        <li><i class="fa-solid fa-image"></i> <a href="gallery.html">Projects</a></li>
+        <li><i class="fa-solid fa-file-pen"></i> <a href="contact.html">Request a Quote</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; <span id="year"></span> Amp'd Up Remodeling. All rights reserved.</span>
+  </div>
+</footer>
 
 <script>
 // --- Load images from JSON ---
@@ -138,6 +200,9 @@ function openLightbox(src){
   lbImg.src = src;
   lb.style.display = "flex";
 }
+
+// --- Update copyright year ---
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
