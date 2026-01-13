@@ -6,6 +6,16 @@
 <title>Amp'd Up Remodeling | Lancaster & Berks County, PA</title>
 <meta name="description" content="Amp'd Up Remodeling is a licensed electrical and remodeling contractor based in Lancaster, PA, serving Lancaster County, Berks County, and surrounding areas." />
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7FDZQTRZ15"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7FDZQTRZ15');
+</script>
+
+<!-- Fonts and Styles -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -13,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* --- Carousel --- */
+/* ---------------------- CAROUSEL ---------------------- */
 .gallery-carousel {
   position: relative;
   max-width: 100%;
@@ -25,6 +35,7 @@
   width: 100%;
   display: none;
   border-radius: 10px;
+  transition: opacity 0.5s ease-in-out;
 }
 .gallery-carousel img.active { display: block; }
 .carousel-btn {
@@ -42,7 +53,7 @@
 .carousel-btn.left { left: 10px; }
 .carousel-btn.right { right: 10px; }
 
-/* --- Gallery grid --- */
+/* ---------------------- GALLERY GRID ---------------------- */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
@@ -53,9 +64,12 @@
   width: 100%;
   border-radius: 8px;
   cursor: pointer;
+  object-fit: cover;
+  transition: transform 0.3s;
 }
+.gallery-item img:hover { transform: scale(1.05); }
 
-/* --- Lightbox --- */
+/* ---------------------- LIGHTBOX ---------------------- */
 #lightbox {
   position: fixed;
   display: none;
@@ -78,6 +92,7 @@
 
 <body>
 
+<!-- ---------------------- HEADER ---------------------- -->
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="brand">
@@ -99,21 +114,22 @@
 <main class="container page fade-in">
   <h1>Gallery & Recent Projects</h1>
 
-  <!-- Carousel -->
+  <!-- ---------------------- CAROUSEL ---------------------- -->
   <div class="gallery-carousel" id="carousel">
     <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
     <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
   </div>
 
-  <!-- Gallery Grid -->
+  <!-- ---------------------- GALLERY GRID ---------------------- -->
   <div class="gallery-grid" id="gallery"></div>
 
-  <!-- Lightbox -->
+  <!-- ---------------------- LIGHTBOX ---------------------- -->
   <div id="lightbox" onclick="this.style.display='none'">
     <img id="lightbox-img">
   </div>
 </main>
 
+<!-- ---------------------- FOOTER ---------------------- -->
 <footer class="site-footer fade-in">
   <div class="container footer-grid">
     <div>
@@ -142,34 +158,38 @@
   </div>
 </footer>
 
+<!-- ---------------------- SCRIPTS ---------------------- -->
 <script>
-// --- Load images from JSON ---
+/* ---------------------- LOAD IMAGES FROM JSON ---------------------- */
 fetch("images/images.json")
   .then(res => res.json())
   .then(images => {
     const carousel = document.getElementById("carousel");
     const gallery = document.getElementById("gallery");
 
-    // --- Carousel (first 4 images) ---
+    // --------- CAROUSEL (first 4 images) ---------
     const featured = images.slice(0,4);
     featured.forEach((img,i) => {
       const el = document.createElement("img");
       el.src = `images/${img.file}`;
+      el.loading = "lazy"; // lazy load for performance
       if(i===0) el.classList.add("active");
       carousel.appendChild(el);
     });
 
-    // --- Full gallery grid ---
+    // --------- FULL GALLERY GRID ---------
     images.forEach(img => {
       const fig = document.createElement("figure");
       fig.classList.add("gallery-item");
-      fig.innerHTML = `<img src="images/${img.file}" onclick="openLightbox(this.src)">
-                       <figcaption>${img.caption}</figcaption>`;
+      fig.innerHTML = `
+        <img src="images/${img.file}" alt="${img.caption}" loading="lazy" onclick="openLightbox(this.src)">
+        <figcaption>${img.caption}</figcaption>
+      `;
       gallery.appendChild(fig);
     });
   });
 
-// --- Carousel controls ---
+/* ---------------------- CAROUSEL CONTROLS ---------------------- */
 let current = 0;
 function showSlide(n){
   const slides = document.querySelectorAll("#carousel img");
@@ -180,9 +200,9 @@ function showSlide(n){
 }
 function nextSlide(){ current++; showSlide(current); }
 function prevSlide(){ current--; showSlide(current); }
-setInterval(nextSlide, 5000);
+setInterval(nextSlide, 5000); // auto slide every 5 seconds
 
-// --- Lightbox ---
+/* ---------------------- LIGHTBOX ---------------------- */
 function openLightbox(src){
   const lb = document.getElementById("lightbox");
   const lbImg = document.getElementById("lightbox-img");
@@ -190,7 +210,7 @@ function openLightbox(src){
   lb.style.display = "flex";
 }
 
-// --- Copyright year ---
+/* ---------------------- COPYRIGHT YEAR ---------------------- */
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
