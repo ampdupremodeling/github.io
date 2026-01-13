@@ -1,222 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Amp'd Up Remodeling | Gallery</title>
-<meta name="description" content="View recent electrical and remodeling projects completed by Amp'd Up Remodeling in Lancaster and Berks County, PA." />
-
-<!-- Google tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7FDZQTRZ15"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7FDZQTRZ15');
-</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script defer src="script.js"></script>
-
 <style>
-/* ===== CAROUSEL ===== */
+/* --- Carousel styles --- */
 .gallery-carousel {
   position: relative;
-  max-width: 1100px;
-  margin: 30px auto 50px;
-  border-radius: 12px;
+  max-width: 100%;
+  margin: 20px auto;
   overflow: hidden;
+  border-radius: 10px;
 }
-
 .gallery-carousel img {
   width: 100%;
   display: none;
-  object-fit: cover;
+  border-radius: 10px;
 }
-
 .gallery-carousel img.active {
   display: block;
 }
-
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.6);
-  color: #fff;
+  background: rgba(0,0,0,0.4);
+  color: white;
   border: none;
-  font-size: 28px;
-  padding: 10px 14px;
+  font-size: 2rem;
+  padding: 5px 10px;
   cursor: pointer;
+  border-radius: 5px;
 }
-
 .carousel-btn.left { left: 10px; }
 .carousel-btn.right { right: 10px; }
 
-/* ===== GALLERY IMPROVEMENTS ===== */
-.gallery-grid img {
+/* --- Gallery grid --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+.gallery-item img {
+  width: 100%;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.25s ease;
 }
 
-.gallery-grid img:hover {
-  transform: scale(1.04);
-}
-
-/* ===== LIGHTBOX ===== */
+/* --- Lightbox --- */
 #lightbox {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.92);
   display: none;
-  align-items: center;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8);
   justify-content: center;
-  z-index: 9999;
+  align-items: center;
+  z-index: 1000;
 }
-
 #lightbox img {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 10px;
+  border-radius: 8px;
 }
-
-/* ===== MOBILE REFINEMENTS ===== */
-@media (max-width: 768px) {
-  .gallery-carousel {
-    margin-top: 20px;
-  }
-}
+#lightbox:active { display:none; }
 </style>
-
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a href="index.html" class="brand">
-      <img src="images/logo-green.png" alt="Amp'd Up Remodeling logo">
-    </a>
-    <button class="nav-toggle" aria-label="Open navigation">☰</button>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="reviews.html">Reviews</a>
-      <a href="packages.html">Packages</a>
-      <a href="contact.html" class="cta">Get a Quote</a>
-    </nav>
-  </div>
+<header>
+  <h1>Gallery & Recent Projects</h1>
 </header>
 
-<main class="container page fade-in">
-
-<h1>Gallery & Recent Projects</h1>
-
-<!-- CAROUSEL -->
-<div class="gallery-carousel">
+<!-- Featured Carousel -->
+<div class="gallery-carousel" id="carousel">
   <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
-  <img src="images/IMG_0107.jpeg" class="active">
-  <img src="images/IMG_0118.jpeg">
-  <img src="images/IMG_5487.jpeg">
-  <img src="images/IMG_5479.jpeg">
   <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
 </div>
 
-<!-- GALLERY -->
-<div class="gallery-grid fade-in">
-  <!-- REPEATABLE IMAGE BLOCK -->
-  <figure class="gallery-item">
-    <img src="images/IMG_0107.jpeg" onclick="openLightbox(this.src)">
-    <figcaption>Bathroom remodel – Lancaster, PA</figcaption>
-  </figure>
+<!-- Full gallery -->
+<div class="gallery-grid" id="gallery"></div>
 
-  <figure class="gallery-item">
-    <img src="images/IMG_0118.jpeg" onclick="openLightbox(this.src)">
-    <figcaption>Garage Car Lift Install – Lancaster, PA</figcaption>
-  </figure>
-
-  <figure class="gallery-item">
-    <img src="images/IMG_5487.jpeg" onclick="openLightbox(this.src)">
-    <figcaption>Panel upgrade – Hamburg, PA</figcaption>
-  </figure>
-
-  <figure class="gallery-item">
-    <img src="images/IMG_5479.jpeg" onclick="openLightbox(this.src)">
-    <figcaption>Framed Stairway – Hamburg, PA</figcaption>
-  </figure>
-
-  <!-- KEEP ADDING AS NEEDED -->
-</div>
-
-</main>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()">
+<!-- Lightbox -->
+<div id="lightbox" onclick="this.style.display='none'">
   <img id="lightbox-img">
 </div>
 
-<footer class="site-footer fade-in">
-  <div class="container footer-grid">
-    <div>
-      <img class="footer-logo" src="images/logo-yellow.png">
-      <p>Licensed Electrical & Remodeling Contractor</p>
-      <p>Lancaster &amp; Berks County, PA</p>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <ul>
-        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:justin@ampdupremodeling.com">justin@ampdupremodeling.com</a></li>
-        <li><i class="fa-solid fa-phone"></i> <a href="tel:+17176178378">(717) 617-8378</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Quick Links</h4>
-      <ul>
-        <li><i class="fa-solid fa-bolt"></i> <a href="services.html">Services</a></li>
-        <li><i class="fa-solid fa-image"></i> <a href="gallery.html">Projects</a></li>
-        <li><i class="fa-solid fa-file-pen"></i> <a href="contact.html">Request a Quote</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container footer-bottom">
-    &copy; <span id="year"></span> Amp'd Up Remodeling
-  </div>
-</footer>
-
 <script>
-let slideIndex = 0;
-const slides = document.querySelectorAll(".gallery-carousel img");
+// --- Load images from JSON ---
+fetch("images/images.json")
+  .then(res => res.json())
+  .then(images => {
+    const carousel = document.getElementById("carousel");
+    const gallery = document.getElementById("gallery");
 
-function showSlide(i) {
+    // --- Pick first 4 images for carousel ---
+    const featured = images.slice(0,4);
+    featured.forEach((img, i) => {
+      const el = document.createElement("img");
+      el.src = `images/${img.file}`;
+      if(i===0) el.classList.add("active");
+      carousel.appendChild(el);
+    });
+
+    // --- Build full gallery ---
+    images.forEach(img => {
+      const fig = document.createElement("figure");
+      fig.classList.add("gallery-item");
+      fig.innerHTML = `<img src="images/${img.file}" onclick="openLightbox(this.src)">
+                       <figcaption>${img.caption}</figcaption>`;
+      gallery.appendChild(fig);
+    });
+  });
+
+// --- Carousel controls ---
+let current = 0;
+function showSlide(n){
+  const slides = document.querySelectorAll("#carousel img");
   slides.forEach(s => s.classList.remove("active"));
-  slides[i].classList.add("active");
+  if(n >= slides.length) current=0;
+  if(n <0) current=slides.length-1;
+  slides[current].classList.add("active");
 }
+function nextSlide(){ current++; showSlide(current); }
+function prevSlide(){ current--; showSlide(current); }
+setInterval(nextSlide, 5000); // auto-advance every 5s
 
-function nextSlide() {
-  slideIndex = (slideIndex + 1) % slides.length;
-  showSlide(slideIndex);
-}
-
-function prevSlide() {
-  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-  showSlide(slideIndex);
-}
-
-setInterval(nextSlide, 4500);
-
-function openLightbox(src) {
-  document.getElementById("lightbox").style.display = "flex";
-  document.getElementById("lightbox-img").src = src;
-}
-
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
+// --- Lightbox ---
+function openLightbox(src){
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lightbox-img");
+  lbImg.src = src;
+  lb.style.display = "flex";
 }
 </script>
 
