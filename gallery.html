@@ -215,6 +215,22 @@
       if (window.console && console.log) console.log(...args);
     }
 
+    // Lightbox functions declared up front so handlers can reference them safely
+    function openLightbox(src, caption) {
+      lightboxImg.src = src;
+      lightboxImg.alt = caption || '';
+      lightboxCaption.textContent = caption || '';
+      lightbox.style.display = 'flex';
+      lightbox.setAttribute('aria-hidden', 'false');
+    }
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+    }
+    // expose in case other code needs it
+    window.openLightbox = openLightbox;
+
     try {
       const res = await fetch('images/images.json', { cache: 'no-store' });
       if (!res.ok) throw new Error('Failed to fetch images/images.json: ' + res.status + ' ' + res.statusText);
@@ -238,7 +254,6 @@
           debugLog('Carousel image failed to load:', el.src);
           el.style.display = 'none';
         });
-        // insert before the buttons' end to keep controls visible (append is fine too)
         carouselEl.appendChild(el);
       });
 
@@ -268,10 +283,10 @@
       function updateCaption() {
         const slides = document.querySelectorAll('#carousel img');
         if (slides.length > 0 && carouselImages.length > 0) {
-          // map slide index to carouselImages index safely (featured subset)
-          const featured = carouselImages.slice(0, Math.min(4, carouselImages.length));
-          captionIndex = Math.min(current, featured.length - 1);
-          carouselCaption.textContent = featured[captionIndex]?.caption || '';
+          const featuredLocal = carouselImages.slice(0, Math.min(4, carouselImages.length));
+          let captionIndex = Math.min(current, featuredLocal.length - 1);
+          if (captionIndex < 0) captionIndex = 0;
+          carouselCaption.textContent = featuredLocal[captionIndex]?.caption || '';
         } else {
           carouselCaption.textContent = '';
         }
@@ -308,27 +323,9 @@
         startAutoSlide();
       }
 
-      // Lightbox
-      function openLightbox(src, caption) {
-        lightboxImg.src = src;
-        lightboxImg.alt = caption || '';
-        lightboxCaption.textContent = caption || '';
-        lightbox.style.display = 'flex';
-        lightbox.setAttribute('aria-hidden', 'false');
-      }
-      function closeLightbox() {
-        lightbox.style.display = 'none';
-        lightbox.setAttribute('aria-hidden', 'true');
-        lightboxImg.src = '';
-      }
-
-      // Expose openLightbox for any other scripts (optional)
-      window.openLightbox = openLightbox;
-
       // lightbox close behavior: click outside image closes
       lightbox.addEventListener('click', (ev) => {
-        // if click is on the backdrop or caption area, close
-        if (ev.target === lightbox || ev.target === lightboxCaption) closeLightbox();
+        if (ev.target === lightbox) closeLightbox();
       });
       // pressing ESC closes
       document.addEventListener('keydown', (ev) => {
