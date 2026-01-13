@@ -55,18 +55,25 @@
   border-radius: 0 0 10px 10px;
 }
 
-/* ===== Gallery Grid ===== */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap: 15px;
-  margin-top: 30px;
-}
-.gallery-item img {
-  width: 100%;
-  border-radius: 8px;
-  cursor: pointer;
-}
+// --- Gallery Grid (SAFE VERSION) ---
+images.forEach(img => {
+  const fig = document.createElement("figure");
+  fig.className = "gallery-item";
+
+  const image = document.createElement("img");
+  image.src = `images/${img.file}`;
+  image.alt = img.caption;
+  image.addEventListener("click", () => {
+    openLightbox(image.src, img.caption);
+  });
+
+  const caption = document.createElement("figcaption");
+  caption.textContent = img.caption;
+
+  fig.appendChild(image);
+  fig.appendChild(caption);
+  gallery.appendChild(fig);
+});
 
 /* ===== Lightbox ===== */
 #lightbox {
